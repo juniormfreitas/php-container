@@ -1,0 +1,21 @@
+version: "3.3"
+services:
+  mysql-container:
+    image: mysql:5.7.22
+    container_name: mysql-container
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "${DB_PORT}:3306"
+    volumes:
+      - php-nginx-data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: homestead
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+volumes:
+  php-nginx-mysql-data:
+    driver: "local"
