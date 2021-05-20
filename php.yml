@@ -1,0 +1,27 @@
+version: "3.3"
+
+services:
+  php-nginx:
+    image: nginx:stable-alpine
+    container_name: php-nginx
+    ports:
+      - "${APP_PORT}:80"
+    volumes:
+      - ./src:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    restart: always
+    depends_on:
+      - php-container
+      - mysql-container
+  php-container:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: php-container
+    volumes:
+      - ./src:/var/www/html
+    ports:
+      - "9022:9000"
+volumes:
+  php-nginx-data:
+    driver: "local"
