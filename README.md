@@ -1,2 +1,3 @@
-# php-container
-A Docker Container for a simple PHP application
+# php-nginx-container
+
+A Docker Container made to run a simple PHP application
