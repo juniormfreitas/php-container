@@ -7,7 +7,7 @@ services:
     ports:
       - "${APP_PORT}:80"
     volumes:
-      - ./src:/var/www/html
+      - ${APP_PATH}:/var/www/html
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     restart: always
     depends_on:
@@ -19,7 +19,7 @@ services:
       dockerfile: Dockerfile
     container_name: php-container
     volumes:
-      - ./src:/var/www/html
+      - ${APP_PATH}:/var/www/html
     ports:
       - "9022:9000"
 volumes:
