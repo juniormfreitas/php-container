@@ -1,5 +1,8 @@
 version: "3.3"
 
+networks:
+  php-network:
+
 services:
   php-nginx:
     image: nginx:stable-alpine
@@ -13,6 +16,8 @@ services:
     depends_on:
       - php-container
       - mysql-container
+    networks:
+      php-network:
   php-container:
     build:
       context: ./
@@ -22,6 +27,8 @@ services:
       - ${APP_PATH}:/var/www/html
     ports:
       - "9022:9000"
+    networks:
+      php-network:
 volumes:
   php-nginx-data:
     driver: "local"

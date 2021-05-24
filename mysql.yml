@@ -1,4 +1,8 @@
 version: "3.3"
+
+networks:
+  php-network:
+
 services:
   mysql-container:
     image: mysql:5.7.22
@@ -16,6 +20,8 @@ services:
       MYSQL_ROOT_PASSWORD: secret
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
+    networks:
+      php-network:
 volumes:
   php-nginx-mysql-data:
     driver: "local"
